@@ -263,6 +263,7 @@ module Jekyll
     #======================================
     # render
     #======================================
+    require "kramdown"
     def render(context)
       if      "#{context[@key]}" != "" # Check for page variable
         key = "#{context[@key]}"
@@ -287,6 +288,9 @@ module Jekyll
         puts "Missing i18n key: #{lang}:#{key}"
         puts "Using translation '%s' from default language: %s" %[translation, site.config['default_lang']]
       end
+
+      translation = (Liquid::Template.parse translation).render site.site_payload
+      translation = Kramdown::Document.new(translation).to_html
       
       translation
     end
