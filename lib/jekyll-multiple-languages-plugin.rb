@@ -52,7 +52,7 @@ module Jekyll
       #-------------------------------------------------------------------------
       
       # Original Jekyll configurations
-      baseurl_org                 = self.config[ 'baseurl' ] # Baseurl set on _config.yml
+      baseurl_org                 = self.config[ 'baseurl' ].to_s # Baseurl set on _config.yml
       exclude_org                 = self.exclude             # List of excluded paths
       dest_org                    = self.dest                # Destination folder where the website is generated
       
